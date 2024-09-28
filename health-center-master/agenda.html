@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Health - Medical Website Template</title>
+    <!--
+
+    Template 2098 Health
+
+    http://www.tooplate.com/view/2098-health
+
+    -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Tooplate">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.3/main.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="css/tooplate-style.css">
+</head>
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+    <!-- PRE LOADER -->
+    <section class="preloader">
+        <div class="spinner">
+            <span class="spinner-rotate"></span>
+        </div>
+    </section>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-5">
+                    <!-- Empty column for alignment or logo -->
+                </div>
+                <div class="col-md-8 col-sm-7 text-align-right">
+                    <span class="phone-icon"><i class="fa fa-phone"></i> (49) 3320-5398</span>
+                    <span class="email-icon"><i class="fa fa-envelope-o"></i> 
+                        <a href="mailto:contato@healthsync.com">contato@healthsync.com</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <style>
+            body {
+                background-color: #f4f4f4;
+                font-family: Arial, sans-serif;
+            }
+            .container {
+                margin-top: 20px;
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+            h2 {
+                color: #333;
+            }
+            #calendar {
+                margin-top: 20px;
+            }
+            .result-item {
+                background: #e7f1ff;
+                padding: 15px;
+                margin: 10px 0;
+                border-radius: 4px;
+            }
+        </style>
+    </header>
+
+    <!-- MENU -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="index.html" class="navbar-brand">
+                    <div class="d-inline-flex align-items-center">
+                        <img src="images/logo.jpg" alt="Health Sync" style="height: 40px; margin-right: 8px;">
+                        <span>Health Sync</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- MENU LINKS -->
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#top" class="smoothScroll">Home</a></li>
+                    <li><a href="#about" class="smoothScroll">Sobre nós</a></li>
+                    <li><a href="#team" class="smoothScroll">Médicos</a></li>
+                    <li><a href="#google-map" class="smoothScroll">Contato</a></li>
+                    <li class="appointment-btn"><a href="#appointment">Faça sua pré-anamnese</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2 class="text-center">Agendar Consulta</h2>
+        
+        <form id="search-form" class="mb-4">
+            <div class="form-row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="especialidade">Especialidade:</label>
+                        <select class="form-control" id="especialidade">
+                            <option value="" disabled selected>Selecione</option>
+                            <option value="cardiologista">Cardiologista</option>
+                            <option value="pneumologista">Pneumologista</option>
+                            <option value="clinico">Clínico Geral</option>
+                            <option value="ortopedista">Ortopedista</option>
+                            <option value="dermatologista">Dermatologista</option>
+                            <option value="ginecologista">Ginecologista</option>
+                            <option value="oftalmologista">Oftalmologista</option>
+                            <option value="nutricionista">Nutricionista</option>
+                            <option value="psicologo">Psicólogo</option>
+                            <option value="fisioterapeuta">Fisioterapeuta</option>
+                            <option value="endocrinologista">Endocrinologista</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="localizacao">Localização:</label>
+                        <input type="text" class="form-control" id="localizacao" placeholder="Digite sua localização">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="valor">Valor Máximo:</label>
+                        <input type="text" class="form-control" id="valor" placeholder="Valor máximo da consulta" oninput="formatarValor(this)">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Buscar Profissionais</button>
+        </form>
+
+        <div id="resultados" class="mt-4"></div>
+
+        <div id="calendar"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.3/main.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        function formatarValor(input) {
+            let valor = input.value.replace(/[^0-9]/g, '');
+            if (valor.length > 2) {
+                valor = valor.replace(/(\d{1,})(\d{2})$/, '$1.$2');
+            } else if (valor.length === 2) {
+                valor = '0.' + valor;
+            } else if (valor.length === 1) {
+                valor = '0.0' + valor;
+            } else {
+                valor = '0.00';
+            }
+            input.value = 'R$ ' + parseFloat(valor).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendarEl = document.getElementById('calendar');
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: [
+                    {
+                        title: 'Consulta - Dr. Carlos Santos',
+                        start: '2024-09-30T10:00:00',
+                        end: '2024-09-30T11:00:00'
+                    },
+                    {
+                        title: 'Consulta - Dra. Ana Costa',
+                        start: '2024-10-01T14:00:00',
+                        end: '2024-10-01T15:00:00'
+                    },
+                    {
+                        title: 'Consulta - Dr. Marcos Pereira',
+                        start: '2024-10-02T09:00:00',
+                        end: '2024-10-02T10:00:00'
+                    }
+                ],
+                dateClick: function(info) {
+                    alert('Data clicada: ' + info.dateStr);
+                }
+            });
+
+            calendar.render();
+        });
+
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const especialidade = document.getElementById('especialidade').value;
+            const localizacao = document.getElementById('localizacao').value.toLowerCase();
+            const valor = parseFloat(document.getElementById('valor').value.replace('R$ ', '').replace('.', '').replace(',', '.')) || Infinity;
+
+            const profissionais = [
+                { nome: "Dr. Carlos Santos", especialidade: "cardiologista", localizacao: "São Paulo", valor: 200.00 },
+                { nome: "Dra. Ana Costa", especialidade: "pneumologista", localizacao: "Rio de Janeiro", valor: 150.50 },
+                { nome: "Dr. Marcos Pereira", especialidade: "clinico", localizacao: "Belo Horizonte", valor: 100.00 },
+                { nome: "Dr. Felipe Oliveira", especialidade: "ortopedista", localizacao: "São Paulo", valor: 250.00 },
+                { nome: "Dra. Juliana Lima", especialidade: "dermatologista", localizacao: "Curitiba", valor: 180.75 },
+                { nome: "Dra. Mariana Rocha", especialidade: "ginecologista", localizacao: "Fortaleza", valor: 220.00 },
+                { nome: "Dr. Ricardo Mendes", especialidade: "oftalmologista", localizacao: "Brasília", valor: 170.00 },
+                { nome: "Dr. André Souza", especialidade: "cardiologista", localizacao: "São Paulo", valor: 190.00 },
+                { nome: "Dra. Beatriz Almeida", especialidade: "cardiologista", localizacao: "Rio de Janeiro", valor: 210.00 },
+                { nome: "Dr. Henrique Lima", especialidade: "cardiologista", localizacao: "Belo Horizonte", valor: 180.00 },
+                { nome: "Dra. Roberta Dias", especialidade: "cardiologista", localizacao: "Curitiba", valor: 220.00 },
+                { nome: "Dr. Tiago Ferreira", especialidade: "cardiologista", localizacao: "Fortaleza", valor: 230.00 },
+                { nome: "Dra. Paula Gomes", especialidade: "nutricionista", localizacao: "São Paulo", valor: 150.00 },
+                { nome: "Dr. Hugo Silva", especialidade: "psicologo", localizacao: "Rio de Janeiro", valor: 200.00 },
+                { nome: "Dra. Fernanda Martins", especialidade: "fisioterapeuta", localizacao: "Belo Horizonte", valor: 300.00 },
+                { nome: "Dr. Felipe Barros", especialidade: "endocrinologista", localizacao: "Curitiba", valor: 280.00 },
+                { nome: "Dra. Maria Tavares", especialidade: "ginecologista", localizacao: "Fortaleza", valor: 350.00 },
+                { nome: "Dr. Rafael Almeida", especialidade: "clinico", localizacao: "São Paulo", valor: 400.00 },
+                { nome: "Dra. Elisa Pires", especialidade: "dermatologista", localizacao: "Brasília", valor: 250.00 },
+                { nome: "Dr. Pedro Campos", especialidade: "endocrinologista", localizacao: "São Paulo", valor: 320.00 },
+                { nome: "Dr. Roberto Almeida", especialidade: "ortopedista", localizacao: "Curitiba", valor: 350.00 },
+                { nome: "Dr. Sérgio Mendes", especialidade: "pneumologista", localizacao: "Rio de Janeiro", valor: 400.00 },
+                { nome: "Dra. Lúcia Vieira", especialidade: "oftalmologista", localizacao: "São Paulo", valor: 180.00 },
+                { nome: "Dr. Daniel Santos", especialidade: "fisioterapeuta", localizacao: "Belo Horizonte", valor: 200.00 },
+                { nome: "Dra. Tatiane Ribeiro", especialidade: "nutricionista", localizacao: "Fortaleza", valor: 250.00 },
+                { nome: "Dr. Felipe Lima", especialidade: "psicologo", localizacao: "Curitiba", valor: 150.00 },
+                { nome: "Dra. Camila Martins", especialidade: "ginecologista", localizacao: "Rio de Janeiro", valor: 220.00 },
+                { nome: "Dr. Alexandre Alves", especialidade: "endocrinologista", localizacao: "São Paulo", valor: 300.00 },
+                { nome: "Dr. Igor Santos", especialidade: "cardiologista", localizacao: "Fortaleza", valor: 480.00 },
+                { nome: "Dr. Wilson Mendes", especialidade: "ortopedista", localizacao: "Brasília", valor: 360.00 },
+                { nome: "Dra. Angela Souza", especialidade: "dermatologista", localizacao: "São Paulo", valor: 220.00 },
+                { nome: "Dra. Patricia Lima", especialidade: "pneumologista", localizacao: "Curitiba", valor: 270.00 },
+                { nome: "Dr. Leonardo Rocha", especialidade: "psicologo", localizacao: "Belo Horizonte", valor: 320.00 },
+            ];
+
+            const resultados = profissionais.filter(prof => {
+                return (especialidade === "" || prof.especialidade === especialidade) &&
+                       (localizacao === "" || prof.localizacao.toLowerCase().includes(localizacao)) &&
+                       (prof.valor <= valor);
+            });
+
+            const resultadosDiv = document.getElementById('resultados');
+            resultadosDiv.innerHTML = '';
+
+            if (resultados.length > 0) {
+                resultados.forEach(prof => {
+                    const item = document.createElement('div');
+                    item.className = 'result-item';
+                    item.innerHTML = `<strong>${prof.nome}</strong><br>Especialidade: ${prof.especialidade}<br>Localização: ${prof.localizacao}<br>Valor: R$ ${prof.valor.toFixed(2).replace('.', ',')}`;
+                    resultadosDiv.appendChild(item);
+                });
+            } else {
+                resultadosDiv.innerHTML = '<div class="alert alert-warning">Nenhum profissional encontrado.</div>';
+            }
+        });
+    </script>
+<footer data-stellar-background-ratio="5">
+    <div class="container">
+         <div class="row">
+
+
+              <div class="col-md-4 col-sm-4"> 
+                   <div class="footer-thumb">
+
+                        <ul class="social-icon">
+                             <li><a href="https://www.facebook.com/tooplate" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                             <li><a href="#" class="fa fa-twitter"></a></li>
+                             <li><a href="#" class="fa fa-instagram"></a></li>
+                        </ul>
+                   </div>
+              </div>
+
+              <div class="col-md-12 col-sm-12 border-top">
+                   <div class="col-md-4 col-sm-6">
+                        <div class="copyright-text"> 
+                             <p>Copyright &copy; 2024 Health Sync
+                             
+                             | Design: <a href="http://www.tooplate.com" target="_parent">Tooplate</a></p>
+                        </div>
+                   </div>
+                   <div class="col-md-6 col-sm-6">
+                        <div class="footer-link"> 
+                             <a href="#">Testes laboratoriais</a>
+                             <a href="#">Departamentos</a>
+                             <a href="#">Politica de privacidade</a>
+                        </div>
+                   </div>
+                   <div class="col-md-2 col-sm-2 text-align-center">
+                        <div class="angle-up-btn"> 
+                            <a href="#top" class="smoothScroll wow fadeInUp" data-wow-delay="1.2s"><i class="fa fa-angle-up"></i></a>
+                        </div>
+                   </div>   
+              </div>
+              
+         </div>
+    </div>
+</footer>
+   <!-- SCRIPTS -->
+   <script src="js/jquery.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+   <script src="js/jquery.stellar.min.js"></script>
+   <script src="js/wow.min.js"></script>
+   <script src="js/owl.carousel.min.js"></script>
+   <script src="js/smoothscroll.js"></script>
+   <script src="js/custom.js"></script>
+
+</body>
+</html>
